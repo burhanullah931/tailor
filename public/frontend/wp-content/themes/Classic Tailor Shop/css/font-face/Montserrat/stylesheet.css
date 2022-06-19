@@ -1,0 +1,3 @@
+@font-face {font-family:'Montserrat';font-weight:300;src:local('Montserrat Light'),url('Montserrat-Light.woff') format('woff')/*, url('Montserrat-Light.woff2') format('woff2');*/;}
+@font-face {font-family:'Montserrat';font-weight:400;src:local('Montserrat'),url('Montserrat-Regular.ttf') format('truetype');}
+@font-face {font-family:'Montserrat';font-weight:700;src:local('Montserrat Bold'),url('Montserrat-Bold.ttf') format('truetype');}
