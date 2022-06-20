@@ -20,6 +20,13 @@
            
         </li>
         <li>
+            <a href="{{route('admin.customers')}}">
+                <div class="parent-icon"><i class='bx bx-user'></i>
+                </div>
+                <div class="menu-title">Customers</div>
+            </a>
+        </li> 
+        {{-- <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class='bx bx-spa' ></i>
                 </div>
@@ -49,7 +56,7 @@
                 </div>
                 <div class="menu-title">Widgets</div>
             </a>
-        </li> 
+        </li>  --}}
        
       
          

@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="{{asset('public/backend/assets/css/dark-theme.css')}}" />
 	<link rel="stylesheet" href="{{asset('public/backend/assets/css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('public/backend/assets/css/header-colors.css')}}" />
+	<link href="{{asset('public/backend/assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet" />
+
 	<title>Synadmin – Bootstrap5 Admin Template</title>
 </head>
 
@@ -40,7 +42,9 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			@yield('content')
+			<div class="page-content">
+				@yield('content')
+			</div>
 		</div>
 		<!--end page wrapper -->
 		<!--start overlay-->
@@ -65,6 +69,8 @@
 	<script src="{{asset('public/backend/assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js')}}"></script>
 	<script src="{{asset('public/backend/assets/plugins/apexcharts-bundle/js/apexcharts.min.js')}}"></script>
 	<script src="{{asset('public/backend/assets/js/index3.js')}}"></script>
+	<script src="{{asset('public/backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+	<script src="{{asset('public/backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
 	<script>
 		new PerfectScrollbar('.best-selling-products');
 		new PerfectScrollbar('.recent-reviews');
@@ -77,3 +83,23 @@
 
 <!-- Mirrored from codervent.com/synadmin/demo/vertical/index3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 25 Jun 2021 08:01:46 GMT -->
 </html>
+@yield('scripts')
+<script>
+	$(document).ready(function() {
+		$('#example').DataTable();
+		$('#example1').DataTable();
+	  } );
+</script>
+
+<script>
+    $(document).ready(function() {
+        var table = $('#example2').DataTable( {
+            lengthChange: false,
+            buttons: [ 'copy', 'excel', 'pdf', 'print']
+        } );
+
+        table.buttons().container()
+            .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+
+    });
+</script>

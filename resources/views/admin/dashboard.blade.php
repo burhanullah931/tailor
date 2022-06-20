@@ -1,7 +1,6 @@
 @extends('layouts.backend.app')
 
 @section('content')
-<div class="page-content">
     <div class="row row-cols-1 row-cols-lg-4">
         <div class="col">
             <div class="card radius-10 overflow-hidden bg-gradient-cosmic">
@@ -247,5 +246,4 @@
     <!--end row-->
 
    
-</div>
 @endsection

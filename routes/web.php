@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Frontend\PagesController;
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +25,12 @@ Auth::routes();
 Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashborad');
 
 Route::get('about-us', [PagesController::class, 'about'])->name('about');
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
+    Route::group(['prefix' => 'customers'], function(){
+        Route::get('/', [CustomerController::class, 'index'])->name('admin.customers');
+        Route::post('/store', [CustomerController::class, 'store'])->name('admin.customer.store');
+        Route::post('/update', [CustomerController::class, 'update'])->name('admin.customer.update');
+        Route::get('delete/{id}', [CustomerController::class, 'destroy'])->name('admin.customer.destroy');
+    });
+});

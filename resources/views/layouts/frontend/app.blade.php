@@ -285,7 +285,6 @@
 
         <div class="page_wrap">
 
-            @yield('header')
 
             @include('layouts.frontend.header')
 
