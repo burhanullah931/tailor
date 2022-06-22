@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\MeasurmentController;
+use App\Http\Controllers\Admin\PartController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Frontend\PagesController;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +36,22 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
         Route::post('/update', [CustomerController::class, 'update'])->name('admin.customer.update');
         Route::get('delete/{id}', [CustomerController::class, 'destroy'])->name('admin.customer.destroy');
     });
+    Route::group(['prefix' => 'types'], function(){
+        Route::get('/', [TypeController::class, 'index'])->name('admin.types');
+        Route::post('/store', [TypeController::class, 'store'])->name('admin.type.store');
+        Route::post('/update', [TypeController::class, 'update'])->name('admin.type.update');
+        Route::get('delete/{id}', [TypeController::class, 'destroy'])->name('admin.type.destroy');
+    });
+    Route::group(['prefix' => 'parts'], function(){
+        Route::get('/', [PartController::class, 'index'])->name('admin.parts');
+        Route::post('/store', [PartController::class, 'store'])->name('admin.part.store');
+        Route::post('/update', [PartController::class, 'update'])->name('admin.part.update');
+        Route::get('delete/{id}', [PartController::class, 'destroy'])->name('admin.part.destroy');
+    });
+    Route::group(['prefix' => 'measurments'], function(){
+        Route::get('/{id}', [MeasurmentController::class, 'index'])->name('admin.measurment');
+        Route::post('type-parts', [MeasurmentController::class, 'PartsById'])->name('admin.parts.by.id');
+        Route::post('store', [MeasurmentController::class, 'store'])->name('admin.measurment.store');
+    });
+
 });

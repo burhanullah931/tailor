@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Measurment;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -38,4 +39,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function measurments()
+    {
+        return $this->hasMany(Measurment::class);
+    }
 }
