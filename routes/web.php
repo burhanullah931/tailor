@@ -50,7 +50,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function(){
     });
     Route::group(['prefix' => 'measurments'], function(){
         Route::get('/{id}', [MeasurmentController::class, 'index'])->name('admin.measurment');
-        Route::post('type-parts', [MeasurmentController::class, 'PartsById'])->name('admin.parts.by.id');
+        Route::get('type-parts/{type_id}/{user_id}', [MeasurmentController::class, 'PartsById'])->name('admin.parts.by.id');
         Route::post('store', [MeasurmentController::class, 'store'])->name('admin.measurment.store');
     });
 

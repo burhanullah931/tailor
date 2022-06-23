@@ -38,7 +38,7 @@
             </div> 
             <form action="{{route('admin.measurment.store')}}" method="POST">
                 @csrf
-                <input type="hidden" name="user_id" value="{{request()->id}}">
+                <input type="hidden" name="user_id" id="user_id" value="{{request()->id}}">
                 <div class="mt-4 row" id="parts">
                     
                 </div>
@@ -63,25 +63,20 @@
             $('#type_id').change(function (e) { 
                 e.preventDefault();
                 var id = $('#type_id').val();
+                var user_id = $('#user_id').val();
+                
+                url = "{{route('admin.parts.by.id', [':type_id', ':user_id'])}}";
+                url = url.replace(':type_id', id);
+                url = url.replace(':user_id', user_id);
                 $.ajax({
-                    type: "POST",
-                    url: "{{route('admin.parts.by.id')}}",
-                    data: {'type_id':id},
+                    type: "GET",
+                    url: url,
+                    // data: {'type_id':id},
                     success: function (data) {
                         console.log(data)
                         $('#parts').empty();
-                        $.each(data, function (index, value){
-                            $('#parts').append(`
-                            <div class="col-4 mb-3">
-                                <label for="">${value.name}</label>
-                                <span class="d-flex p-2">
-                                    <input type="hidden" name="partId[]" value="${value.id}">
-                                    <span> <img src="${value.photo}" class="rounded" width="100" alt=""></span>
-                                    <span><input type="text" name="measurment[]" class="form-control m-3 w-90" placeholder="Measurment"></span>
-                                </span>
-                            </div>
-                            `);
-                        });
+                        $('#parts').append(data);
+                        
                         $('#submit-btn').removeClass('d-none');
                     }
                 });
